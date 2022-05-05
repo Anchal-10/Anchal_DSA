@@ -1,0 +1,1 @@
+use two stacks it will help keeping track of count of elements and will remove once the count reach k
