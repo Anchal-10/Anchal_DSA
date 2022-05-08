@@ -1,16 +1,10 @@
 class Solution {
     public int strStr(String haystack, String needle) {
-        if (haystack == null || needle == null) {
-            throw new IllegalArgumentException("Input strings are null");
-        }
 
         int hLen = haystack.length();
         int nLen = needle.length();
         if (nLen == 0) {
             return 0;
-        }
-        if (hLen < nLen) {
-            return -1;
         }
 
         for (int i = 0; i <= hLen - nLen; i++) {
