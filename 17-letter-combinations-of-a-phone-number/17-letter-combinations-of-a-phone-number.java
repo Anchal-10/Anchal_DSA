@@ -1,9 +1,10 @@
 class Solution {
     public List<String> letterCombinations(String digits) {
-        List<String> ans=new ArrayList<>();
-        if(digits.length()==0|| digits.isEmpty()){
-            return ans;
+        List<String> list=new ArrayList<>();
+                if(digits.length()==0|| digits.isEmpty()){
+            return list;
         }
+
         HashMap<Character,String> map=new HashMap<>();
         map.put('2',"abc");
         map.put('3',"def");
@@ -13,20 +14,23 @@ class Solution {
         map.put('7',"pqrs");
         map.put('8',"tuv");
         map.put('9',"wxyz");
- backtrack(digits,0,new StringBuilder(),map,ans);
-        return ans;
+        solve(list,0,digits,map,new StringBuilder());
+        return list;
+        
     }
-    public void backtrack(String digits,int i,StringBuilder sb,HashMap<Character,String> map,List<String> ans){
-        if(i>=digits.length()){
-            ans.add(sb.toString());
+    public void solve(List<String> res,int ind,String digits,HashMap<Character,String> map,StringBuilder sb){
+        if(ind>=digits.length()){
+            res.add(sb.toString());
             return;
         }
-        String curr=map.get(digits.charAt(i));
-        for(int k=0;k<curr.length();k++){
-            sb.append(curr.charAt(k));
-             backtrack(digits,i+1,sb,map,ans);
+        
+        
+        
+        String m=map.get(digits.charAt(ind));
+        for(int i=0;i<m.length();i++){
+            sb.append(m.charAt(i));
+            solve(res,ind+1,digits,map,sb);
             sb.deleteCharAt(sb.length()-1);
-
         }
     }
 }
