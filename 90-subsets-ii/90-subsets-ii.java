@@ -8,7 +8,7 @@ class Solution {
     
     public void solve(List<List<Integer>> res,List<Integer> temp,int ind,int[]a){
         res.add(new ArrayList<>(temp));
-        for(int i=0;i<a.length;i++){
+        for(int i=ind;i<a.length;i++){
                              if(i==ind|| i>ind&& a[i]!=a[i-1]){
 
             temp.add(a[i]);
