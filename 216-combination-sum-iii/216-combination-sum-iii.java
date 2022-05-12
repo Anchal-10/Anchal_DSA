@@ -12,6 +12,9 @@ class Solution {
             return;
         }
         for(int i=ind;i<=9;i++){
+            if(i>n){
+                break;
+            }
             temp.add(i);
             solve(k,n-i,i+1,al,temp);
             temp.remove(temp.size()-1);
