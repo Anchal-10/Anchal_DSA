@@ -19,19 +19,28 @@ class Solution {
         if(root==null){
 return al;
         }
-        Stack<TreeNode> stack=new Stack<>();
-        TreeNode temp=root;
-        while(!stack.isEmpty()|| temp!=null){
-            if(temp!=null){
-                stack.push(temp);
-                temp=temp.left;
-            }
+        TreeNode curr=root;
+        while(curr!=null){
+            if(curr.left==null){
+al.add(curr.val);
+curr=curr.right;
+}
             else{
-                temp=stack.pop();
-                al.add(temp.val);
-                temp=temp.right;
+            TreeNode prev=curr.left;
+            while(prev.right!=null&&prev.right!=curr){
+                prev=prev.right;
             }
-}
+            if(prev.right==null){
+prev.right=curr;
+            curr=curr.left;
+            }
+            if(prev.right==curr){
+                prev.right=null;
+                al.add(curr.val);
+                curr=curr.right;
+            }
+            }
+        }
         return al;
-    }
-}
+            
+        }}
