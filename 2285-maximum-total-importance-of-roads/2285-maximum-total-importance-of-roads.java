@@ -6,11 +6,11 @@ class Solution {
                        indegree[m[1]]++;
 
         }
-        long res=0;
+long res=0;
         Arrays.sort(indegree);
         for(int i=0;i<n;i++){
-        res+=(long)indegree[i]*(i+1);
-}
+            res=res+(long)indegree[i]*(i+1);
+        }
         return res;
     }
 }
