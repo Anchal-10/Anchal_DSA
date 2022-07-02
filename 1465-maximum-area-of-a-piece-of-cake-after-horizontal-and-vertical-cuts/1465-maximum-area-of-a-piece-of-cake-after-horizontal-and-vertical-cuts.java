@@ -9,21 +9,21 @@ class Solution {
 
         long maximumHorizontal = horizontalCuts[0], maximumVertical =verticalCuts[0] ;
 
-        //FOR HORIZONTAL
-        for (int i = 0; i < m - 1; i++)
+        
+        for (int i = 0; i < m - 1; i++){
             maximumHorizontal = Math.max(maximumHorizontal, horizontalCuts[i + 1] - horizontalCuts[i]);
 
-		//EDGE CASE
+        }
         maximumHorizontal = Math.max(maximumHorizontal, h - horizontalCuts[m - 1]);
 
-        //FOR VERTICAL
-        for (int i = 0; i < n - 1; i++)
+        
+        for (int i = 0; i < n - 1; i++){
             maximumVertical = Math.max(maximumVertical, verticalCuts[i + 1] - verticalCuts[i]);
-			
-		//EDGE CASE
+        }
+		
        maximumVertical = Math.max(maximumVertical, w - verticalCuts[n - 1]);
 
-        return (int) (maximumHorizontal * maximumVertical % MOD);
+        return (int)(maximumHorizontal * maximumVertical % MOD);
     }
 }
 
