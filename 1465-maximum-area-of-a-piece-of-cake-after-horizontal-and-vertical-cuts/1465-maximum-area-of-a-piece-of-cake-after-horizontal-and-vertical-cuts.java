@@ -7,7 +7,7 @@ class Solution {
         Arrays.sort(horizontalCuts);
         Arrays.sort(verticalCuts);
 
-        long maximumHorizontal = horizontalCuts[0], maximumVertical = verticalCuts[0];
+        long maximumHorizontal = horizontalCuts[0], maximumVertical =verticalCuts[0] ;
 
         //FOR HORIZONTAL
         for (int i = 0; i < m - 1; i++)
