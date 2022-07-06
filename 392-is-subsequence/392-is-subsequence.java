@@ -1,30 +1,17 @@
 class Solution {
-    int c=0;
     public boolean isSubsequence(String s, String t) {
-    boolean m=solve(s,t,s.length(),t.length());
-        return m;
-        
+    if(s.length()==0&& t.length()!=0){
+        return true;
     }
-        public boolean solve(String s,String t, int m,int n){
-
-            
-            if(m==0){
-return true;
-            }
-            if(n==0){
-return false;
-            }
-            
-
-            
         
-            if(s.charAt(m-1)==t.charAt(n-1)){
-               return  solve(s,t,m-1,n-1);
+int i=0;
+        int j=0;
+        while(j<t.length()&& i<s.length()){
+            if(s.charAt(i)==t.charAt(j)){
+                i++;
             }
-                            
-           return    solve(s,t,m,n-1);
-
-                        }
-        
+            j++;
+        }
+        return i==s.length();
     }
-            
+}
