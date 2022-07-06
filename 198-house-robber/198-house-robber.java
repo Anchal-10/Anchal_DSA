@@ -1,23 +1,15 @@
 class Solution {
     public int rob(int[] nums) {
         int dp[]=new int[nums.length];
-        Arrays.fill(dp,-1);
-        int m=helper(nums,nums.length-1,dp);
-        return m;
+dp[0]=nums[0];
+for(int i=1;i<nums.length;i++){
+    int take=nums[i];
+    if(i>1){
+        take+=dp[i-2];
     }
-    
-    public int helper(int a[],int n,int[]dp){
-        if(n==0){
-            return a[n];
-        }
-        if(n<0){
-            return 0;
-        }
-        if(dp[n]!=-1){
-            return dp[n];
-        }
-        int one=a[n]+helper(a,n-2,dp);
-        int two=helper(a,n-1,dp);
-        return dp[n]=Math.max(one,two);
-    }
+    int notake=dp[i-1];
+    dp[i]=Math.max(take,notake);
+}
+return dp[nums.length-1];
+}
 }
