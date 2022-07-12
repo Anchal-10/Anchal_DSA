@@ -16,21 +16,20 @@
 class Solution {
     boolean flag=true;
     public boolean isValidBST(TreeNode root) {
-        
         helper(root,Long.MIN_VALUE,Long.MAX_VALUE);
         return flag;
+        
     }
-    public void helper(TreeNode root,long min,long max){
+    public void helper(TreeNode root,    long min,long max){
+
         if(root==null){
-return ;
+            return;
         }
         
-        if(root.val<=min || root.val>=max){
-flag=false;
+        if(root.val<=min|| root.val>=max){
+            flag= false;
         }
-        
         helper(root.left,min,root.val);
                 helper(root.right,root.val,max);
-
-    }
+        }
 }
