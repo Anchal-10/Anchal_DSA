@@ -11,48 +11,43 @@
  *         this.left = left;
  *         this.right = right;
  *     }
- * }
- */
-class Pair{
-    TreeNode node;
-    int index;
-    public Pair(TreeNode node,int index){
-        this.node=node;
-        this.index=index;
-    }
+ * }*/
+class pair{
+int num;
+TreeNode node;
+pair(TreeNode Node,int number){
+    num=number;
+    node=Node;
 }
-class Solution {
-    public int widthOfBinaryTree(TreeNode root) {
-        Queue<Pair> queue=new LinkedList<>();
-        queue.add(new Pair(root,0));
-        int first=-1;
-        int last=-1;
-        int max=Integer.MIN_VALUE;
-        while(!queue.isEmpty()){
-                        int size=queue.size();
-            int min=queue.peek().index;            
-            for(int i=1;i<=size;i++){
-                TreeNode temp=queue.peek().node;
-                int curr=queue.peek().index-min;
-                queue.poll();
-                
-                if(i==1){
-                    first=curr;
-                }
-                                if(i==size){
-                    last=curr;
-                }
-if(temp.left!=null){
-    queue.offer(new Pair(temp.left,(2*curr)+1));
-}
-                if(temp.right!=null){
-    queue.offer(new Pair(temp.right,(2*curr)+2));
 }
 
+class Solution {                                     
+public int widthOfBinaryTree(TreeNode root) { 
+    if(root==null)return 0;
+    int ans=0;
+    Queue<pair>q=new LinkedList();
+    q.add(new pair(root,0));
+    while(!q.isEmpty()){
+        int mmin=q.peek().num;
+        int first=0;
+        int last=0;
+        int n=q.size();
+        for(int i=0;i<n;i++){
+            int current_index=q.peek().num-mmin;
+            TreeNode temp=q.peek().node;
+            q.poll();
+            if(i==0)first=current_index;
+            if(i==n-1)last=current_index;
+            if(temp.left!=null){
+                q.add(new pair(temp.left,current_index*2+1));
             }
-                            max=Math.max(max,last-first+1);
-
+            if(temp.right!=null){
+                q.add(new pair(temp.right,current_index*2+2));
+            }
+            
         }
-        return max;
+        ans=Math.max(ans,last-first+1);
     }
+    return ans;
+}
 }
