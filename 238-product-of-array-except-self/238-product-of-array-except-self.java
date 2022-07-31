@@ -8,25 +8,15 @@ left[0]=1;
             left[i]=left[i-1]*nums[i-1];
             
         }
-        for(int i: left){
-System.out.print(i+ " ");
-        }
-right[nums.length-1]=1;
+        pro=1;
+        left[nums.length-1]=left[nums.length-1]*pro;
         pro=nums[nums.length-1];
         for(int i=nums.length-2;i>=0;i--){
-            right[i]=right[i+1]*nums[i+1];
-
+            left[i]*=pro;
+            pro=pro*nums[i];
+            
 
         }
-        
-int ans[]=new int[nums.length];
-        for(int i=0;i<nums.length;i++){
-            ans[i]=left[i]*right[i];
-        }
-                for(int i: right){
-System.out.print(i+ " ");
-        }
-
-        return ans;
+    return left;
     }
 }
