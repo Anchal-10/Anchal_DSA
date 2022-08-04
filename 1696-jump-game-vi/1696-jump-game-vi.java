@@ -5,7 +5,7 @@ class Solution {
         int max=nums[0];
         
         for(int i=1;i<nums.length;i++){
-            while(!pq.isEmpty()&& pq.peek()[1]<i-k){
+            while(!pq.isEmpty()&& k<i-pq.peek()[1]){
                 pq.poll();
             }
             int curr=pq.peek()[0];
