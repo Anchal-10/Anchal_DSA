@@ -1,22 +1,22 @@
 class Solution {
     public int deleteAndEarn(int[] nums) {
-                int[] dp = new int[20001];
-        
-        for(int i : nums) dp[i] = dp[i] + i;
-        
-        return go(dp); //House robber 1 reuse
-    }
-    
-    private int go(int[] nums){
-        if(nums.length < 2) return nums[0];
-        int[] dp = new int[nums.length];
-        dp[0] = nums[0];
-        dp[1] = Math.max(dp[0],nums[1]);
-        for(int i = 2; i < nums.length; i++){
-            dp[i] = Math.max(dp[i-2] + nums[i],dp[i-1]);
+        int dp[]=new int[100001];
+        for(int i: nums){
+            dp[i]=dp[i]+i;
         }
-        
-        return dp[dp.length-1];
+        return helper(dp,dp.length-1);
+            
+    }
+    public int helper(int a[],int ind){
+int dp[]=new int[a.length];
+dp[0]=a[0];
+dp[1]=Math.max(a[1],a[0]);
+for(int i=2;i<dp.length;i++){
+    int p=a[i]+ dp[i-2];
+    int n=0+dp[i-1];
+    dp[i]=Math.max(p,n);
+}
+    return dp[a.length-1];
     }
 }
 
