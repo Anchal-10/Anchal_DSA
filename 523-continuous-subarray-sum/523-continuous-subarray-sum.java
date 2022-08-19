@@ -5,7 +5,7 @@ class Solution {
         int sum=0;
         for(int i=0;i<nums.length;i++){
             sum+=nums[i];
-            int mod=sum%k;
+            int mod=(k==0)?sum:sum%k;
             if(map.containsKey(mod)&& i-map.get(mod)>1){
                 return true;
             }
