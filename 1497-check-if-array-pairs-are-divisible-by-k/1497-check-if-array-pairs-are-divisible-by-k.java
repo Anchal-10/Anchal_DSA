@@ -1,5 +1,8 @@
 class Solution {
     public boolean canArrange(int[] arr, int k) {
+        if(arr.length%2!=0){
+return false;
+        }
         HashMap<Integer,Integer> map=new HashMap<>();
         
         for(int i: arr){
