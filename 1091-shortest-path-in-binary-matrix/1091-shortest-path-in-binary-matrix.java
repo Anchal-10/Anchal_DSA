@@ -12,7 +12,7 @@ return -1;
         
         Queue<int[]> queue=new LinkedList<>();
         queue.offer(new int[]{0,0,1});
-        grid[0][0]=1;
+      //  grid[0][0]=1;
 int dir[][] = new int[][]{{0,1},{0,-1},{1,0},{-1,0},{1,-1},{-1,1},{-1,-1},{1,1}};
 while(!queue.isEmpty()){
     int size=queue.size();
