@@ -7,8 +7,8 @@ class Solution {
 return helper(triangle,0,0,dp);
     }
     public int helper(List<List<Integer>> triangle,int row,int col,int[][]dp){
-        if(row==triangle.size()){
-return 0;
+        if(row==triangle.size()-1){
+return triangle.get(row).get(col);
         }
         if(dp[row][col]!=-1){
             return dp[row][col];
