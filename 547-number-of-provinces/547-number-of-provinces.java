@@ -1,35 +1,32 @@
 class Solution {
     public int findCircleNum(int[][] isConnected) {
-        List<List<Integer>> al=new ArrayList<>();
+        int c=0;
+List<List<Integer>>graph=new ArrayList<>();
         for(int i=0;i<isConnected.length;i++){
-            al.add(new ArrayList<>());
+            graph.add(new ArrayList<>());
         }
         for(int i=0;i<isConnected.length;i++){
-            for(int j=0;j<isConnected[i].length;j++){
-                if(isConnected[i][j]==1&& i!=j){
-                    al.get(i).add(j);
-                                       // al.get(j).add(i);
-
-                }
+            for(int j=0;j<isConnected.length;j++){
+                if(isConnected[i][j]==1&&i!=j){
+                    graph.get(i).add(j);
                     
+}
             }
         }
-       boolean[]visited=new boolean[isConnected.length];
-        int c=0;
+        boolean[]visited=new boolean[isConnected.length];
         for(int i=0;i<isConnected.length;i++){
             if(!visited[i]){
                 c++;
-                dfs(al,visited,i);
+                helper(graph,visited,i);
             }
         }
         return c;
     }
-public void dfs(        List<List<Integer>> al,boolean[]visited,int i){
-visited[i]=true;
-    for(int ele: al.get(i)){
-        if(!visited[ele]){
-        dfs(al,visited,ele);
+    public void helper(List<List<Integer>>graph,boolean[]visited,int n){
+        visited[n]=true;
+        for(int e: graph.get(n)){
+if(visited[e]==false){
+    helper(graph,visited,e);
+}}
     }
-}
-}
 }
