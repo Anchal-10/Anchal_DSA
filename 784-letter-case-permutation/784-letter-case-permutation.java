@@ -1,22 +1,24 @@
 class Solution {
     public List<String> letterCasePermutation(String s) {
-   // public List<String> letterCasePermutation(String S) {
-        List<String> ans = new ArrayList<>();
-        backtrack(ans, 0, s.toCharArray());
-        return ans;
+List<String> res=new ArrayList<>();
+        helper(res,s.toCharArray(),0);
+        return res;
     }
-    public void backtrack(List<String> ans, int i, char[] S){
-        if(i==S.length)
-            ans.add(new String(S));
+    public void helper(List<String> res,char []ch,int ind){
+        if(ind==ch.length){
+            res.add(new String(ch));
+            return;
+        }
+        if(Character.isLetter(ch[ind])){
+            ch[ind]=Character.toLowerCase(ch[ind]);
+            helper(res,ch,ind+1);
+                        ch[ind]=Character.toUpperCase(ch[ind]);
+            helper(res,ch,ind+1);
+
+        }
         else{
-            if(Character.isLetter(S[i])){ //If it's letter
-                S[i] = Character.toUpperCase(S[i]);
-                backtrack(ans, i+1, S); //Upper case branch
-                S[i] = Character.toLowerCase(S[i]);
-                backtrack(ans, i+1, S); //Lower case branch
-            }
-            else
-                backtrack(ans, i+1, S); 
+                        helper(res,ch,ind+1);
+
         }
     }
 }
