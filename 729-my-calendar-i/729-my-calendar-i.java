@@ -1,34 +1,29 @@
 class MyCalendar {
-Map<Integer,Integer> map;
+    TreeMap<Integer,Integer> map;
+
     public MyCalendar() {
         map=new TreeMap<>();
     }
     
     public boolean book(int start, int end) {
-       map.put(start,map.getOrDefault(start,0)+1);
-               map.put(end,map.getOrDefault(end,0)-1);
-
+        map.put(start,map.getOrDefault(start,0)+1);
+                map.put(end,map.getOrDefault(end,0)-1);
         int sum=0;
-        for(Map.Entry<Integer,Integer> es: map.entrySet()){
-            sum+=es.getValue();
+        for(int i: map.values()){
+        sum=sum+i;
             if(sum>1){
-                       map.put(start,map.getOrDefault(start,0)-1);
-                if(map.get(start)==0){
-                    map.remove(start);
-                }
-               map.put(end,map.getOrDefault(end,0)+1);
-                                if(map.get(end)==0){
-                    map.remove(end);
-                }
-
-
-                return false;
+                        map.put(start,map.getOrDefault(start,0)-1);
+                map.put(end,map.getOrDefault(end,0)+1);
+return false;
+                
             }
         }
-                    return true;
+        return true;
 
     }
 }
+
+/**
 
 /**
  * Your MyCalendar object will be instantiated and called as such:
