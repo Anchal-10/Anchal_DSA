@@ -1,31 +1,37 @@
 class MyCalendar {
-    private class Pair{
-        int st;
-        int end;
-        Pair(){}
-        Pair(int st, int end){
-            this.st = st;
-            this.end = end;
-        }
-    }
-    
-    private List<Pair>al;
+Map<Integer,Integer> map;
     public MyCalendar() {
-        al = new ArrayList<>();
+        map=new TreeMap<>();
     }
     
     public boolean book(int start, int end) {
-        if(al.size()==0){
-            al.add(new Pair(start, end));
-            return true;
-        }else{
-            for(int i=0; i<al.size(); i++){
-                Pair p = al.get(i);
-                if(start<p.end && p.st<end) return false;
+       map.put(start,map.getOrDefault(start,0)+1);
+               map.put(end,map.getOrDefault(end,0)-1);
+
+        int sum=0;
+        for(Map.Entry<Integer,Integer> es: map.entrySet()){
+            sum+=es.getValue();
+            if(sum>1){
+                       map.put(start,map.getOrDefault(start,0)-1);
+                if(map.get(start)==0){
+                    map.remove(start);
+                }
+               map.put(end,map.getOrDefault(end,0)+1);
+                                if(map.get(end)==0){
+                    map.remove(end);
+                }
+
+
+                return false;
             }
         }
-        al.add(new Pair(start, end));
-        return true;
+                    return true;
+
     }
 }
 
+/**
+ * Your MyCalendar object will be instantiated and called as such:
+ * MyCalendar obj = new MyCalendar();
+ * boolean param_1 = obj.book(start,end);
+ */
