@@ -1,25 +1,27 @@
-class MyCalendar{
-TreeMap<Integer, Integer> map;
-public MyCalendar() {
-    map = new TreeMap<>();
-
-}
-public boolean book(int start, int end) {
-    Integer low = map.lowerKey(end);
-    
-    if(low == null || map.get(low) <= start) {
-        map.put(start, end);
-        return true;
+class MyCalendar {
+TreeMap<Integer,Integer> map;
+    public MyCalendar() {
+        map=new TreeMap<>();
     }
-    return false;
+    
+    public boolean book(int start, int end) {
+        map.put(start,map.getOrDefault(start,0)+1);
+                map.put(end,map.getOrDefault(end,0)-1);
+        int c=0;
+        for(int i: map.values()){
+            c+=i;
+            if(c>1){
+                        map.put(start,map.getOrDefault(start,0)-1);
+                map.put(end,map.getOrDefault(end,0)+1);
+
+                return false;
+            }
+        }
+    return true;
+
+        
+    }
 }
-}
-
-
-
-
-
-/**
 
 /**
  * Your MyCalendar object will be instantiated and called as such:
