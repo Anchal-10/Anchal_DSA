@@ -1,27 +1,23 @@
-class MyCalendar {
-    TreeMap<Integer,Integer> map;
+class MyCalendar{
+TreeMap<Integer, Integer> map;
+public MyCalendar() {
+    map = new TreeMap<>();
 
-    public MyCalendar() {
-        map=new TreeMap<>();
-    }
-    
-    public boolean book(int start, int end) {
-        map.put(start,map.getOrDefault(start,0)+1);
-                map.put(end,map.getOrDefault(end,0)-1);
-        int sum=0;
-        for(int i: map.values()){
-        sum=sum+i;
-            if(sum>1){
-                        map.put(start,map.getOrDefault(start,0)-1);
-                map.put(end,map.getOrDefault(end,0)+1);
-return false;
-                
-            }
-        }
-        return true;
-
-    }
 }
+public boolean book(int start, int end) {
+    Integer low = map.lowerKey(end);
+    
+    if(low == null || map.get(low) <= start) {
+        map.put(start, end);
+        return true;
+    }
+    return false;
+}
+}
+
+
+
+
 
 /**
 
