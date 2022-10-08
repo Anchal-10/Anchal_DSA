@@ -1,6 +1,5 @@
 class MyCalendarTwo {
-    TreeMap<Integer,Integer> map;
-
+TreeMap<Integer,Integer> map;
     public MyCalendarTwo() {
         map=new TreeMap<>();
     }
@@ -8,20 +7,22 @@ class MyCalendarTwo {
     public boolean book(int start, int end) {
         map.put(start,map.getOrDefault(start,0)+1);
                 map.put(end,map.getOrDefault(end,0)-1);
-        int sum=0;
+        int c=0;
         for(int i: map.values()){
-        sum=sum+i;
-            if(sum>2){
+            c+=i;
+            if(c>2){
                         map.put(start,map.getOrDefault(start,0)-1);
                 map.put(end,map.getOrDefault(end,0)+1);
-return false;
-                
+
+                return false;
             }
         }
-        return true;
+    return true;
 
+        
     }
 }
+
 
 /**
  * Your MyCalendarTwo object will be instantiated and called as such:
