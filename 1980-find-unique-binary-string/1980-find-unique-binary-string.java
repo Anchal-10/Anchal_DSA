@@ -1,15 +1,27 @@
 class Solution {
+    String res="";
     public String findDifferentBinaryString(String[] nums) {
-        int n = nums.length;
-        char[] ans = new char[n];
-        
-        for(int i=0; i<n;i++)
-        {
-        
-            ans[i] = nums[i].charAt(i) == '0' ? '1' : '0';
+Set<String> set=new HashSet<>();
+        for(String str: nums){
+set.add(str);
         }
-        
-    //Convert full character array in one string to return it
-        return String.valueOf(ans);
+        int arr[]=new int[]{0,1};
+        StringBuilder sb=new StringBuilder();
+        helper(set,arr,nums.length,0,sb);
+        return res;
     }
+public void         helper(Set<String>set,int[]arr,int n,int ind,StringBuilder str){
+    if(ind==n){
+        if(!set.contains(str.toString())){
+            res=str.toString();
+        }
+        return;
+    }
+    for(int i: arr){
+        str.append(i);
+        helper(set,arr,n,ind+1,str);
+        str.deleteCharAt(str.length()-1);
+    }
+}
+    
 }
