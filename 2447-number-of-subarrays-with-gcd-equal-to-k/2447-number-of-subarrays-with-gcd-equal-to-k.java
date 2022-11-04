@@ -8,6 +8,9 @@ class Solution {
                 if(curr==k){
                     ans=ans+1;
                 }
+                if(curr<k){
+                    break;
+                }
             }
         }
         return ans;
