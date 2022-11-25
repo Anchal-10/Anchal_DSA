@@ -15,7 +15,7 @@ while(!queue.isEmpty()){
         if(!first&&(temp[0]==0|| temp[1]==n-1|| temp[0]==m-1|| temp[1]==0 )){
             return temp[2];
         }
-        first=false;
+     first=false;
         for(int [] a: dir){
             int newr=temp[0]+a[0];
                 int newc=temp[1]+a[1];
