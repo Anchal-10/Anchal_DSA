@@ -1,34 +1,34 @@
 class Solution {
     public int minFallingPathSum(int[][] matrix) {
-        
-        Integer[][] dp = new Integer[matrix.length + 1][matrix[0].length];
-        int ans = Integer.MAX_VALUE;
-        for (int i = 0; i < matrix.length; i++)
-            ans = Math.min(ans, (helperRecursiveDP(matrix, dp, 0, i, matrix.length)));
-			// finding answers for each column of first row seperatly and storing the minimum value in variable ans 
-        return ans;
+Integer dp[][]=new Integer[matrix.length+1][matrix[0].length];
+        int min=Integer.MAX_VALUE;
+        for(int i=0;i<matrix.length;i++){
+             int ans  = helper(matrix,0,i,dp,matrix.length);
+            min=Math.min(min,ans);
+        }
+        return min;
     }
-	
-// helper function which computes the result for each column in row 1
-private int helperRecursiveDP(int[][] grid, Integer[][] dp, int i, int j, int n) {
-        if (j >= n || j < 0) // base-case 1
-            return (int) Math.pow(10, 7);
+    public int helper(int [][]matrix,int i,int j,Integer dp[][],int n){
+        if(j<0|| j>=n){
+                        return (int) Math.pow(10, 7);
 
-        if (i == n - 1)
-            return grid[i][j]; // base-case 2
-
-        if (dp[i][j] != null)
-            return dp[i][j]; // avoiding repetitive steps by returning previously calculated ans
-		
-		// Traversing path according to the question
-        int x = grid[i][j] + helperRecursiveDP(grid, dp, i + 1, j, n);
-        int y = grid[i][j] + helperRecursiveDP(grid, dp, i + 1, j + 1, n);
-        int z = grid[i][j] + helperRecursiveDP(grid, dp, i + 1, j - 1, n);
-
-        int ans = Math.min(x, Math.min(y, z)); // finding min of values returned by three traversed paths
-        dp[i][j] = ans;
-
+        }
+        if(i==n-1){
+            return matrix[i][j];
+        }
+        if(dp[i][j]!=null){
+            return dp[i][j];
+        }
+        int x=matrix[i][j]+helper(matrix,i+1,j,dp,n);
+        int y=matrix[i][j]+helper(matrix,i+1,j+1,dp,n);
+        int z=matrix[i][j]+helper(matrix,i+1,j-1,dp,n);
+int ans=Math.min(x,Math.min(y,z));
+        dp[i][j]=ans;
         return ans;
+        
     }
 }
 
+    
+
+        
