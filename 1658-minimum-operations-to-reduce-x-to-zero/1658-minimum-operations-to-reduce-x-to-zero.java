@@ -1,47 +1,44 @@
 class Solution {
     public int minOperations(int[] nums, int x) {
-        if(nums.length==0){
-return -1;
-        }
+int n=nums.length;
         int sum=0;
-        for(int i=0;i<nums.length;i++){
-            sum=sum+nums[i];
+        for(int i: nums){
+            sum+=i;
+            
         }
-        int t=sum-x;
-        if(t==0){
-return nums.length;
+        if(x>sum){
+            return -1;
         }
+        int max=Integer.MIN_VALUE;
+        sum=sum-x;
         int j=0;
         int i=0;
-        int v=0;
-        int max=0;
-        while(j<nums.length){
-            v=v+nums[j];
-            if(v<t){
+        int k=0;
+        while(j<n)
+        {
+            k=k+nums[j];
+            if(k<sum){
                 j++;
             }
-            else if(v==t){
+            else if(k==sum){
                 max=Math.max(j-i+1,max);
+                // i++;
                 j++;
-            }
-            else if(v>t){
-                while(v>t&& i<nums.length){
-                      v=v-nums[i];
-                    i++;
-                    if(v==t){
-                    max=Math.max(max,j-i+1);
-                    }
-                }
                 
-                j++;
             }
+else if(k>sum){
+    while(k>sum && i<nums.length){
+        k=k-nums[i];
+        i++;
+        if(k==sum){
+            max=Math.max(j-i+1, max);
         }
-        if(max==0){
-return -1;
-        }
-        else{
-            return nums.length-max;
-            
-        }}
-        
+    
     }
+    j++;
+}
+        }
+       // System.out.print(sum+ " " +max); 
+return n-max<0? -1: n-max;
+    }
+}
