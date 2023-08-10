@@ -49,15 +49,12 @@ class Solution{
     //Function to find the leaders in the array.
     static ArrayList<Integer> leaders(int arr[], int n){
         ArrayList<Integer> al=new ArrayList<>();
-Stack<Integer> stack=new Stack<>();
+int max=Integer.MIN_VALUE;
 for(int i=n-1;i>=0;i--){
-    while(!stack.isEmpty() && stack.peek()<= arr[i]){
-        stack.pop();
-    }
-    if(stack.isEmpty()){
+    if( arr[i]>=max){
         al.add(arr[i]);
+        max=arr[i];
     }
-    stack.push(arr[i]);
 }
 Collections.sort(al,Collections.reverseOrder());
 return al;
